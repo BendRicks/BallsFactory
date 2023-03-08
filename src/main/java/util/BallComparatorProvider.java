@@ -2,6 +2,8 @@ package util;
 
 import entity.Ball;
 
+import java.util.HashMap;
+
 public class BallComparatorProvider {
 
     public static Comparator<Ball> getDiameterIncComparator(){
@@ -36,12 +38,27 @@ public class BallComparatorProvider {
         return (o1, o2) -> Byte.compare(o1.getColor().getRgb()[1], o2.getColor().getRgb()[1]);
     }
 
-    public static Comparator<Ball> getClassIncComparator(){
-        return (o1, o2) -> o2.getClass().getSimpleName().compareTo(o1.getClass().getSimpleName());
+    public static Comparator<Ball> getNameIncComparator(){
+        return (o1, o2) -> o2.getModelName().compareTo(o1.getModelName());
     }
 
-    public static Comparator<Ball> getClassDescComparator(){
-        return (o1, o2) -> o1.getClass().getSimpleName().compareTo(o2.getClass().getSimpleName());
+    public static Comparator<Ball> getNameDescComparator(){
+        return (o1, o2) -> o1.getModelName().compareTo(o2.getModelName());
+    }
+
+    /**
+     * @param classesOrder Hashmap that tells order of classes sort Class - Order number
+     */
+    public static Comparator<Ball> getClassComparator(HashMap<Class, Integer> classesOrder){
+        return new Comparator<>() {
+
+            private HashMap<Class, Integer> order = classesOrder;
+
+            @Override
+            public int compare(Ball o1, Ball o2) {
+                return order.get(o2.getClass()).compareTo(order.get(o1.getClass()));
+            }
+        };
     }
 
 }
