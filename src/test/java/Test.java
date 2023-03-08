@@ -2,8 +2,8 @@ import entity.*;
 import org.junit.Assert;
 import sort.HeapSort;
 import sort.QuickSort;
-import util.BallComparatorProvider;
-import util.MultiThreadSorter;
+import comparator.BallComparatorProvider;
+import sort.MultiThreadSorter;
 
 import java.util.HashMap;
 

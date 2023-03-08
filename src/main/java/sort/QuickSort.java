@@ -1,6 +1,6 @@
 package sort;
 
-import util.Comparator;
+import comparator.Comparator;
 
 public class QuickSort<T> implements SortAlgorithm<T>{
 

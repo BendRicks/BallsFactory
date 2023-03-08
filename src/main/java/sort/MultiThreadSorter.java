@@ -1,6 +1,6 @@
-package util;
+package sort;
 
-import sort.SortAlgorithm;
+import comparator.Comparator;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -8,9 +8,9 @@ import java.util.*;
 public class MultiThreadSorter<T> {
 
     private final Class<T> clazz;
-    private Comparator<T> comparator;
+    private comparator.Comparator<T> comparator;
 
-    public MultiThreadSorter(Class<T> clazz, Comparator<T> comparator) {
+    public MultiThreadSorter(Class<T> clazz, comparator.Comparator<T> comparator) {
         this.clazz = clazz;
         this.comparator = comparator;
     }
@@ -42,9 +42,7 @@ public class MultiThreadSorter<T> {
         }
         List<Thread> threads = new ArrayList<>();
         for (T[] array : arrays) {
-            Thread sortThread = new Thread(() -> {
-                algorithm.sort(array, comparator);
-            });
+            Thread sortThread = new Thread(() -> algorithm.sort(array, comparator));
             threads.add(sortThread);
             sortThread.start();
         }
@@ -59,9 +57,7 @@ public class MultiThreadSorter<T> {
         while (arrays.size() >= 2) {
             T[] array1 = arrays.pop();
             T[] array2 = arrays.pop();
-            Thread mergeThread = new Thread(() -> {
-                arrays.push(sortMergeArrays(array1, array2));
-            });
+            Thread mergeThread = new Thread(() -> arrays.push(sortMergeArrays(array1, array2)));
             threads.add(mergeThread);
             mergeThread.start();
             if (arrays.size() < 2) {

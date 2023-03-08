@@ -1,4 +1,4 @@
-package util;
+package comparator;
 
 public interface Comparator<T> {
 

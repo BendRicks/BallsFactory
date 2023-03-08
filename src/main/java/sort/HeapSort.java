@@ -1,6 +1,6 @@
 package sort;
 
-import util.Comparator;
+import comparator.Comparator;
 
 public class HeapSort<T> implements SortAlgorithm<T>{
 

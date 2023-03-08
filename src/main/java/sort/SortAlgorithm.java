@@ -1,6 +1,6 @@
 package sort;
 
-import util.Comparator;
+import comparator.Comparator;
 
 public interface SortAlgorithm<T> {
 
