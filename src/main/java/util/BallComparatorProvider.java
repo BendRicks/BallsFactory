@@ -36,4 +36,12 @@ public class BallComparatorProvider {
         return (o1, o2) -> Byte.compare(o1.getColor().getRgb()[1], o2.getColor().getRgb()[1]);
     }
 
+    public static Comparator<Ball> getClassIncComparator(){
+        return (o1, o2) -> o2.getClass().getSimpleName().compareTo(o1.getClass().getSimpleName());
+    }
+
+    public static Comparator<Ball> getClassDescComparator(){
+        return (o1, o2) -> o1.getClass().getSimpleName().compareTo(o2.getClass().getSimpleName());
+    }
+
 }
